@@ -2,6 +2,7 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var helpers = require('./helpers');
+var autoprefixer = require('autoprefixer');
 
 module.exports = {
   entry: {
@@ -13,6 +14,8 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.ts']
   },
+
+  postcss: [autoprefixer],
 
   module: {
     loaders: [
@@ -48,6 +51,12 @@ module.exports = {
 
     new HtmlWebpackPlugin({
       template: 'src/index.html'
+    }),
+
+    new webpack.ProvidePlugin({
+      jQuery: 'jquery',
+      $: 'jquery',
+      jquery: 'jquery'
     })
   ]
 };

@@ -1,30 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Hero } from '../hero';
-import { HeroService } from '../hero.service';
+import { Script } from '../script';
+import { ScriptService } from '../script.service';
 
 @Component({
   selector: 'my-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
+  providers: [ScriptService]
 })
 export class DashboardComponent implements OnInit {
 
-	heroes: Hero[] = [];
+	scripts: Script[] = [];
 
 	constructor(
 		private router: Router,
-		private heroService: HeroService) {
+		private scriptService: ScriptService) {
 	}
 
 	ngOnInit() {
-	  this.heroService.getHeroes()
-	    .then(heroes => this.heroes = heroes.slice(1, 5));
+		// this.scriptService.getScripts()
+		// 	.then(scripts => {
+		// 		this.scripts = scripts;
+		// 		console.log(scripts);
+		// 	});
 	}
 
-	gotoDetail(hero: Hero) {
-	  let link = ['/detail', hero.id];
-	  this.router.navigate(link);
-	}
+	// gotoDetail(hero: Hero) {
+	//   let link = ['/detail', hero.id];
+	//   this.router.navigate(link);
+	// }
 }
